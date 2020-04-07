@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  run-up-api:
+    container_name: run-up-api
+    build: .
+    command: yarn start
+    environment:
+      PORT: 7000
+      REDIS_URL: redis://run-up-redis:6379
+    ports:
+      - "7000:7000"
+    networks:
+      - cache-network
+
+networks:
+  cache-network:
+    external: true
+    name: cache-network
